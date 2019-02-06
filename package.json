@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/belcboo/scraper2019/issues"
   },
-  "homepage": "https://github.com/belcboo/scraper2019#readme"
+  "homepage": "https://github.com/belcboo/scraper2019#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "mongoose": "^5.4.10",
+    "request": "^2.88.0"
+  }
 }
