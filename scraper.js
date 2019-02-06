@@ -23,36 +23,15 @@ scrape = () => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
 
-      // Location details:
-      // 0 Departamento
-      // 1 Municipio
-      // 2 Centro de Votación
-      // 3 Número de JVR
-
-      // Votes details:
-      // 0 Votos primer lugar en esa JRV
-      // 1 Votos segundo lugar en esa JRV
-      // 2 Votos tercer lugar en esa JRV
-      // 3 Votos cuarto lugar en esa JRV
-
-      // Partidos details:
-      // 0 Partido que finalizó en primer lugar en JRV
-      // 0 Partido que finalizó en segundo lugar en JRV
-      // 0 Partido que finalizó en tercer lugar en JRV
-      // 0 Partido que finalizó en cuarto lugar en JRV
-
-      // Coalición details:
-      // 0 Partido de Coalición que finalizó en primer lugar en JRV
-      // 1 Partido de Coalición que finalizó en segundo lugar en JRV
-      // 2 Partido de Coalición que finalizó en tercer lugar en JRV
-      // 3 Partido de Coalición que finalizó en cuarto lugar en JRV
-      // 4 Partido de Coalición que finalizó en quinto lugar en JRV
-
       // Arrays
       const location = [];
       const votes = [];
       const partido = [];
       const coalicion = [];
+
+      // Variables para asignar votos a partidos
+      let part1, part2, part3, part4;
+      let coal1, coal2, coal3, coal4, coal5;
 
       // Guarda la ubicación en array
       $(".dropdown-toggle b").each((i, el) => {
@@ -82,27 +61,85 @@ scrape = () => {
         coalicion.push($(el).attr("title"));
       });
 
+      // Verifica el index de ""
+      const coalIndex = partido.indexOf("COALICIÓN");
+
+      switch (coalIndex) {
+        case 1: {
+          part1 = 0;
+          part2 = 6;
+          part3 = 7;
+          part4 = 8;
+          coal1 = 1;
+          coal2 = 2;
+          coal3 = 3;
+          coal4 = 4;
+          coal5 = 5;
+        }
+        case 2: {
+          part1 = 0;
+          part2 = 1;
+          part3 = 7;
+          part4 = 8;
+          coal1 = 2;
+          coal2 = 3;
+          coal3 = 4;
+          coal4 = 5;
+          coal5 = 6;
+        }
+        case 3: {
+          part1 = 0;
+          part2 = 1;
+          part3 = 2;
+          part4 = 8;
+          coal1 = 3;
+          coal2 = 4;
+          coal3 = 5;
+          coal4 = 6;
+          coal5 = 7;
+        }
+        case 4: {
+          part1 = 0;
+          part2 = 1;
+          part3 = 2;
+          part4 = 3;
+          coal1 = 4;
+          coal2 = 5;
+          coal3 = 6;
+          coal4 = 7;
+          coal5 = 8;
+        }
+      }
+
       const jrvData = {
         numeroJrv: counter,
         ubicacion: {
           departamento: location[0],
           municipio: location[1],
           centroVotacion: location[2]
+        },
+        partidos: {
+          partido1: partido[0],
+          votos1: votes[part1],
+          partido2: partido[1],
+          votos2: votes[part2],
+          partido3: partido[2],
+          votos3: votes[part3],
+          partido4: partido[3],
+          votos4: votes[part4]
+        },
+        coalicion: {
+          coalicion1: coalicion[0],
+          votosCoal1: votes[coal1],
+          coalicion2: coalicion[1],
+          votosCoal2: votes[coal2],
+          coalicion3: coalicion[2],
+          votosCoal3: votes[coal3],
+          coalicion4: coalicion[3],
+          votosCoal4: votes[coal4],
+          coalicion5: coalicion[4],
+          votosCoal5: votes[coal5]
         }
-        // 'partidos': {
-        //   'nombre1': partido[0],
-        //   'votos1': votes[0],
-        //   'nombre2': partido[1],
-        //   'votos2': votes[1],
-        //   'nombre3': partido[2],
-        //   'votos3': votes[2],
-        //   'nombre4': partido[3],
-        //   'votos4': votes[3],
-        // },
-        // 'coalition': {
-        //   'nombre1': coalicion[0]
-
-        // }
       };
 
       console.log(jrvData);

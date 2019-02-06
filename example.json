@@ -1,0 +1,30 @@
+{
+  "numeroJrv": 1,
+  "ubicacion": {
+    "departamento": "SAN SALVADOR",
+    "municipio": "SAN SALVADOR",
+    "centroVotacion": "INSTITUTO NACIONAL DE LOS DEPORTES"
+  },
+  "partidos": {
+    "partido1": "GANA",
+    "votos1": "181",
+    "partido2": "COALICIÓN",
+    "votos2": "124",
+    "partido3": "FMLN",
+    "votos3": "39",
+    "partido4": "VAMOS",
+    "votos4": "6"
+  },
+  "coalition": {
+    "coalicion1": "ARENA",
+    "votosCoal1": "119",
+    "coalicion2": "PCN",
+    "votosCoal2": "2",
+    "coalicion3": "DS",
+    "votosCoal3": "2",
+    "coalicion4": "COALIGADOS",
+    "votosCoal4": "1",
+    "coalicion5": "PDC",
+    "votosCoal5": "0"
+  }
+}
