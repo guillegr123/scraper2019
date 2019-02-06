@@ -75,9 +75,6 @@ scrape = () => {
       // Guarda el orden de los 4 partidos participando en la eleccion
       $(".media-left img").each((i, el) => {
         partido.push($(el).attr("title"));
-
-        const votosPart = $(".text-right").text();
-        console.log(votosPart);
       });
 
       // Guarda el orden de los 5 partidos de coalición
